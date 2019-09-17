@@ -1,0 +1,49 @@
+// ==UserScript==
+// @name        Neopets - Neocola Auto
+// @namespace   https://github.com/oligochrome
+// @description Auto plays the neocola machine, selects all options at random
+// @author      oligochrome
+// @copyright   2019 oligochrome
+// @license     GNU GPL
+// @version     1.0
+// @language    en
+// @include		*.neopets.com/moon/neocola*.phtml
+// @grant		none
+// ==/UserScript==
+
+(function(){
+
+var loc = document.location.href;
+
+// click button to start
+if (loc.match('neopets.com/moon/neocola.phtml')){
+$("input[value='Onward!']").click();
+return;
+}
+
+// auto complete the form values on the page with random
+// then click to accept
+if (loc.match('neopets.com/moon/neocola2.phtml')){
+  var goin = document.getElementsByName('token_id')[0];
+  if (goin){
+    goin.options.selectedIndex = Math.floor((Math.random() * 1) + 1);
+  }
+    var goin1 = document.getElementsByName('neocola_flavor')[0];
+  if (goin1){
+    goin1.options.selectedIndex = Math.floor((Math.random() * 8) + 1);
+  }
+    var goin2 = document.getElementsByName('red_button')[0];
+  if (goin2){
+    goin2.options.selectedIndex = Math.floor((Math.random() * 6) + 1);
+  }
+$("input[value='Continue to your doom...']").click();
+  return;
+}
+
+// replay after complete
+if (loc.match('neopets.com/moon/neocola3.phtml')){
+$("input[value='Play Again!']").click();
+return;
+}
+
+})();
