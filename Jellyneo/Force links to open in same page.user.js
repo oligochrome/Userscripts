@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name		   items.jellyneo.net - _blank to _self
+// @name           items.jellyneo.net - _blank to _self
 // @namespace      https://github.com/oligochrome
 // @description    Forces links on items.jellyneo.net to open in the same window
 // @author         oligochrome
