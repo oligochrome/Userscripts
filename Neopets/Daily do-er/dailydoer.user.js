@@ -40,6 +40,7 @@
 // @match http://www.neopets.com/pirates/buriedtreasure/buriedtreasure.phtml?
 // @match http://www.neopets.com/medieval/symolhole.phtml
 // @match http://www.neopets.com/bank.phtml
+// @history 1.1.1 Added bank interest script
 // @grant          none
 // ==/UserScript==
 
