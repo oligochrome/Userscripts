@@ -6,7 +6,7 @@
 // @author         oligochrome
 // @copyright      2019 oligochrome
 // @license        GNU GPL
-// @version        1.1.1
+// @version        1.1.5
 // @language       en
 // @match http://www.neopets.com/faerieland/springs.phtml
 // @match http://www.neopets.com/wishing.phtml
@@ -40,6 +40,9 @@
 // @match http://www.neopets.com/pirates/buriedtreasure/buriedtreasure.phtml?
 // @match http://www.neopets.com/medieval/symolhole.phtml
 // @match http://www.neopets.com/bank.phtml
+// @match http://www.neopets.com/market.phtml?type=till
+// @match http://www.neopets.com/medieval/potatocounter.phtml
+// @match http://www.neopets.com/faerieland/caverns/index.phtml
 // @history 1.1.1 Added bank interest script
 // @grant          none
 // ==/UserScript==
@@ -54,6 +57,11 @@
 1.1.1: 
 19/12/2019 - Actually started logging these.
 1.1.1 is a minor update, added bank interest script
+1.1.2 Added shop till script, originally by diceroll123
+1.1.3 removed brackets from bank interest section, so it should now work, fixed grumpy king as i have no idea how that broke.
+      added potato counter script
+1.1.4 added lunar temple and faerie caverns
+1.1.5 moved all single line (e.g. window reassign or just click) scripts to top
 */
 
 
@@ -62,22 +70,53 @@ switch (expr) {
     case 'http://www.neopets.com/faerieland/springs.phtml':
         $("input[value='Heal my Pets']").click();
         break;
-
-    case 'http://www.neopets.com/wishing.phtml':
-        var bet = 21;
-        var item = 'Halloween Y14 Goodie Bag';
-        var bih = document.body.innerHTML;
-
-        $("input[name='donation']").val(bet);
-        $("input[name='wish']").val(item);
-
-        if (bih.match('Wish Count: 7')) {
-            console.log("All done")
-        } else {
-            document.querySelector("input[value='Make a Wish']").click();
-        }
+    case 'http://www.neopets.com/water/fishing.phtml':
+        document.querySelector("input[value='Reel In Your Line']").click();
         break;
-
+    
+    case 'http://www.neopets.com/jelly/jelly.phtml':
+        $("input[value='Grab some Jelly']").click();
+        break;
+    
+    case 'http://www.neopets.com/worlds/geraptiku/tomb.phtml':
+        window.location.assign("http://www.neopets.com/worlds/geraptiku/process_tomb.phtml")
+        break;
+    
+    case 'http://www.neopets.com/prehistoric/omelette.phtml':
+        $("input[value='Grab some Omelette']").click();
+        break;
+    
+    case 'http://www.neopets.com/halloween/applebobbing.phtml':
+        window.location.assign("http://www.neopets.com/halloween/applebobbing.phtml?bobbing=1")
+        break;
+		
+		    case 'http://www.neopets.com/desert/fruit/index.phtml':
+        $("input[value='Spin, spin, spin!']").click();
+        break;
+    
+    case 'http://www.neopets.com/desert/shrine.phtml':
+        $("input[value='Approach the Shrine']").click();
+        break;
+    
+    case 'http://www.neopets.com/faerieland/tdmbgpop.phtml':
+        $("input[value='Talk to the Plushie']").click();
+        break;
+    
+    case 'http://www.neopets.com/moon/meteor.phtml':
+        $("input[value='Take a chance']").click();
+        break;
+    
+    case 'http://www.neopets.com/moon/meteor.phtml?getclose=1':
+        $("input[value='Submit']").click();
+        break;
+    
+    case 'http://www.neopets.com/pirates/buriedtreasure/index.phtml':
+        $("input[value='Click to Play!  Only 300 NP a game!']").click();
+        break;
+    
+		
+    case 'http://www.neopets.com/wishing.phtml':
+		
     case 'http://www.neopets.com/wishing.phtml?thanks=21&xt=':
         var bet = 21;
         var item = 'Halloween Y14 Goodie Bag';
@@ -174,26 +213,6 @@ switch (expr) {
             locClick.click();
         }
         break;
-
-    case 'http://www.neopets.com/water/fishing.phtml':
-        document.querySelector("input[value='Reel In Your Line']").click();
-        break;
-    
-    case 'http://www.neopets.com/jelly/jelly.phtml':
-        $("input[value='Grab some Jelly']").click();
-        break;
-    
-    case 'http://www.neopets.com/worlds/geraptiku/tomb.phtml':
-        window.location.assign("http://www.neopets.com/worlds/geraptiku/process_tomb.phtml")
-        break;
-    
-    case 'http://www.neopets.com/prehistoric/omelette.phtml':
-        $("input[value='Grab some Omelette']").click();
-        break;
-    
-    case 'http://www.neopets.com/halloween/applebobbing.phtml':
-        window.location.assign("http://www.neopets.com/halloween/applebobbing.phtml?bobbing=1")
-        break;
     
     case 'http://www.neopets.com/pirates/anchormanagement.phtml':
         var el = document.getElementById('form-fire-cannon');
@@ -242,56 +261,34 @@ switch (expr) {
                 }
             }
             $("input[value='Impress King Hagan with your wisdom!']").click();
+          
         }
         break;
+    
+  case 'http://www.neopets.com/medieval/grumpyking.phtml' :
+  for (var x = 0, thisForm; thisForm = document.forms[x]; x++){
+    if (thisForm.action.match('grumpyking2.phtml')){
+      selections = new Array('What', 'do', 'you do if', '', 'fierce', 'Peophins', '', 'has eaten too much', '', 'tin of olives')
+//      selections = new Array('What', 'do', 'you do if', '', 'fierce', 'Peophins', '', 'has eaten too much', '', 'tin of olives', 'You', 'offering', 'a', 'tin of', '', 'what what what', '', '')
+      for (var y = 0; y < 18; y++){
+        for (var z = 0; z < thisForm.elements[y].options.length; z++){
+          if (thisForm.elements[y].options[z].value == selections[y]){
+            thisForm.elements[y].options.selectedIndex = z;
+            break;
+          }
+          else {
+            var thisChoice = Math.ceil(Math.random()*(thisForm.elements[y].options.length - 1));
+            thisForm.elements[y].options.selectedIndex = thisChoice;
+          }
+        }
+      }
+    }
+  }
+  $("input[value='Tell the King your joke!']").click();
 
-    case 'http://www.neopets.com/medieval/grumpyking.phtml':
-        if (loc.match('neopets.com/medieval/grumpyking.phtml')) {
-            for (var x = 0, thisForm; thisForm = document.forms[x]; x++) {
-                if (thisForm.action.match('grumpyking2.phtml')) {
-                    selections = new Array('What', 'do', 'you do if', '', 'fierce', 'Peophins', '', 'has eaten too much', '', 'tin of olives')
-                    //      selections = new Array('What', 'do', 'you do if', '', 'fierce', 'Peophins', '', 'has eaten too much', '', 'tin of olives', 'You', 'offering', 'a', 'tin of', '', 'what what what', '', '')
-                    for (var y = 0; y < 18; y++) {
-                        for (var z = 0; z < thisForm.elements[y].options.length; z++) {
-                            if (thisForm.elements[y].options[z].value == selections[y]) {
-                                thisForm.elements[y].options.selectedIndex = z;
-                                break;
-                            } else {
-                                var thisChoice = Math.ceil(Math.random() * (thisForm.elements[y].options.length - 1));
-                                thisForm.elements[y].options.selectedIndex = thisChoice;
-                            }
-                            $("input[value='Tell the King your joke!']").click();
-                        }
-                    }
-                }
-            }
-        }
-        break;
+ break;
     
-    case 'http://www.neopets.com/desert/fruit/index.phtml':
-        $("input[value='Spin, spin, spin!']").click();
-        break;
-    
-    case 'http://www.neopets.com/desert/shrine.phtml':
-        $("input[value='Approach the Shrine']").click();
-        break;
-    
-    case 'http://www.neopets.com/faerieland/tdmbgpop.phtml':
-        $("input[value='Talk to the Plushie']").click();
-        break;
-    
-    case 'http://www.neopets.com/moon/meteor.phtml':
-        $("input[value='Take a chance']").click();
-        break;
-    
-    case 'http://www.neopets.com/moon/meteor.phtml?getclose=1':
-        $("input[value='Submit']").click();
-        break;
-    
-    case 'http://www.neopets.com/pirates/buriedtreasure/index.phtml':
-        $("input[value='Click to Play!  Only 300 NP a game!']").click();
-        break;
-    
+
     case ('http://www.neopets.com/pirates/buriedtreasure/buriedtreasure.phtml?'):
         window.location.assign("http://www.neopets.com/pirates/buriedtreasure/buriedtreasure.phtml?" + (Math.round(Math.random() * 449) + 26) + "," + (Math.round(Math.random() * 454) + 31))
         break;
@@ -305,14 +302,133 @@ switch (expr) {
         break;
     
         // new bank script start
-    case ('http://www.neopets.com/bank.phtml') :
+    case 'http://www.neopets.com/bank.phtml' : // ooops added brackets, removed now
 document.body.innerHTML += '<form id="bank" action="http://www.neopets.com/process_bank.phtml" method="post"><input type="hidden" name="type" value="interest"></form>';
 document.getElementById("bank").submit();
 break;
     // new bank script end
     
+    // Shop till script originally by diceroll123
+    // 
+  case ('http://www.neopets.com/market.phtml?type=till') :
+    var np = document.body.innerHTML.match(/You currently have <b>([0-9,\,]*) NP<\/b> in your till./)[1];
+np = np.replace(/,/g, '');
+
+if(np == 0) return;
+
+$('[name="amount"]').val(np);
+    // end shop till
+    
+    // start potato counter
+  case 'http://www.neopets.com/medieval/potatocounter.phtml' :
+    // Okay so it's not pretty, but this is an effective way to count the potatoes. Previously the value was accessible via the source.
+value=document.evaluate("count(/html/body/div/div[3]/table/tbody/tr/td[2]/table/tbody/tr/td/img)",document,null,1,null).numberValue
+// The guess should be in the box now..So we'll click the button
+$("input[value='Guess!']").click();
+// Well if we're here then it's worked so far. Last bit of code restarts it ^__^
+$("input[value='Play Again']").click();
+    break;
+  // end potato counter
+    
+    // // // // Cheeseroller
+  case 'http://www.neopets.com/medieval/cheeseroller.phtml' :
+  var cheese_name = document.getElementsByName('cheese_name')[0];
+  if (cheese_name){
+    cheese_name.parentNode.innerHTML = '<p></p>\
+<select name="cheese_name" style="font-size: 12px;">\
+<option value="Spicy Juppie">Spicy Juppie Cheese - 150np</option>\
+<option value="Smoked Snorkle">Smoked Snorkle Cheese - 300np</option>\
+<option value="Triple Mustard">Triple Mustard Cheese - 450np</option>\
+<option value="Honey">Honey Cheese - 600np</option>\
+<option value="Big Beefy">Big Beefy Cheese - 750np</option>\
+<option value="Purple Spotted">Purple Spotted Cheese - 900np</option>\
+<option value="Brain">Brain Cheese - 1050np</option>\
+<option value="Alkenore">Alkenore Cheese - 1200np</option>\
+<option value="Mutated">Mutated Cheese - 1350np</option>\
+<option value="Bubbling Blueberry">Bubbling Blueberry Cheese - 1500np</option>\
+<option value="Tyrannian Dung">Tyrannian Dung Cheese - 1650np</option>\
+<option value="Quadruple Fudge">Quadruple Fudge Cheese - 1800np</option>\
+<option value="Brick">Brick Cheese - 1950np</option>\
+<option value="Gooey Snot">Gooey Snot Cheese - 2100np</option>\
+<option value="Peppermint">Peppermint Cheese - 2250np</option>\
+<option value="Overgrown">Overgrown Cheese - 2400np</option>\
+<option value="Heavy Bark">Heavy Bark Cheese - 2550np</option>\
+<option value="Warty Blue">Warty Blue Cheese - 2700np</option>\
+<option value="Fragrant Ummagcheese">Fragrant Ummagcheese - 2850np</option>\
+<option value="Furry Chocomint">Furry Chocomint Cheese - 3000np</option>\
+<option value="Mummified">Mummified Cheese - 3150np</option>\
+<option value="Nimmo Tube">Nimmo Tube Cheese - 3300np</option>\
+<option value="Space">Space Cheese - 3450np</option>\
+<option value="Angelpuss">Angelpuss Cheese - 3600np</option>\
+<option value="Meaty Cheese">Meaty Cheese - 3750np</option>\
+<option value="Potato Cheese">Potato Cheese - 3900np</option>\
+<option value="Very Stinky Cheese">Very Stinky Cheese - 4050np</option>\
+<option value="Fishy Cheese">Fishy Cheese - 4200np</option>\
+<option value="Shiny Golden Cheese">Shiny Golden Cheese - 4350np</option>\
+</select> <input name="type" value="buy" type="hidden"> <input value="Submit" type="submit">';
+
+    var mycheese = GM_getValue('cheese', '0');
+    cheese_name = document.getElementsByName('cheese_name')[0];
+    cheese_name.selectedIndex = mycheese;
+    
+    cheese_name.addEventListener('change',function(){
+      GM_setValue('cheese', cheese_name.selectedIndex);
+    }, false);
+  }
+  function changeImg(item){
+    thisImg.src = 'http://images.neopets.com/items/'+item+'.gif';
+  }    
+  allImgs = document.evaluate('//img[@width="80"]',document,null,XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE,null);
+  for (var x = 0, thisImg; thisImg = allImgs.snapshotItem(x); x++){
+    if (thisImg.src.match('med_cheese_24')){changeImg('mfo_head_cheese');}
+    else if (thisImg.src.match('med_cheese_25')){changeImg('mfo_cheese_potato');}
+    else if (thisImg.src.match('med_cheese_26')){changeImg('mfo_cheese_limburger');}
+    else if (thisImg.src.match('med_cheese_27')){changeImg('mfo_cheese_fishy');}
+    else if (thisImg.src.match('med_cheese_28')){changeImg('mfo_cheese_golden');}
+  }
+  break;
+
+    // lunar temple start
+    // original script by nungryscpro 
+  case 'http://www.neopets.com/shenkuu/lunar/?show=puzzle' :
+    thisForm = document.getElementsByName('submitted')[0].parentNode;
+if (thisForm){
+  var moon = Math.round(document.body.innerHTML.match(/angleKreludor=(\d+)/)[1]/22.5 + 8) % 16;
+  newElement = document.createElement("div");
+  newElement.innerHTML='<div style="padding:2px; font-weight:bold; font-size:11pt; text-align:center; background-color:white; color:black;"> The correct lunar phase is:<br><br><img src="http://images.neopets.com/shenkuu/lunar/phases/'+ moon +'.gif" border="0" width="60" height="60"><br><br><font class="sf" color="#3a84b0">(Click the already selected circle to submit your answer.)</font></div><br>';
+  thisForm.parentNode.insertBefore(newElement, thisForm);
+  thisForm.getElementsByTagName('input')[moon + 1].checked = true;
+}
+    break;
+    
+    // start faerie caverns
+// this could really do with improving :S
+case 'http://www.neopets.com/faerieland/caverns/index.phtml' :
+if (document.body.innerHTML.match("You gasp as you enter a room lit with candles. You've found the treasure!"))
+{
+$("input[value='Click to see what you've found']").click();
+}
+if (document.body.innerHTML.match("Welcome to the Faerie Caverns."))
+{
+$("input[value='Enter']").click();
+}
+if (document.body.innerHTML.match("Which way do you go?"))
+{
+$("input[name = 'go" + (Math.random() > 0.85 ? "Right" : "Left") + "']").click();
+}
+if (document.body.innerHTML.match("and are faced with another choice."))
+{
+$("input[name = 'go" + (Math.random() > 0.85 ? "Right" : "Left") + "']").click();
+}
+if (document.body.innerHTML.match("You have followed the winding passages deep into the cavern"))
+{
+$("input[name = 'go" + (Math.random() > 0.85 ? "Right" : "Left") + "']").click();
+}
+break;
+// end faerie caverns
     
     default:
         console.log(expr);
 }
+
 
