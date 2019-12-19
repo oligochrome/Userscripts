@@ -1,3 +1,4 @@
+
 // ==UserScript==
 // @name           Neopets - Dailies do-er
 // @namespace      https://github.com/oligochrome
@@ -5,7 +6,7 @@
 // @author         oligochrome
 // @copyright      2019 oligochrome
 // @license        GNU GPL
-// @version        1.1
+// @version        1.1.1
 // @language       en
 // @match http://www.neopets.com/faerieland/springs.phtml
 // @match http://www.neopets.com/wishing.phtml
@@ -38,8 +39,22 @@
 // @match http://www.neopets.com/pirates/buriedtreasure/index.phtml
 // @match http://www.neopets.com/pirates/buriedtreasure/buriedtreasure.phtml?
 // @match http://www.neopets.com/medieval/symolhole.phtml
+// @match http://www.neopets.com/bank.phtml
 // @grant          none
 // ==/UserScript==
+
+/*
+*************************************************************************************
+*                                                                                   *
+*                                Update log                                         *
+*                                                                                   *
+*                                                                                   *
+*************************************************************************************
+1.1.1: 
+19/12/2019 - Actually started logging these.
+1.1.1 is a minor update, added bank interest script
+*/
+
 
 var expr = window.location.href;
 switch (expr) {
@@ -288,6 +303,15 @@ switch (expr) {
         $("input[value='ENTER!']").click();
         break;
     
+        // new bank script start
+    case ('http://www.neopets.com/bank.phtml') :
+document.body.innerHTML += '<form id="bank" action="http://www.neopets.com/process_bank.phtml" method="post"><input type="hidden" name="type" value="interest"></form>';
+document.getElementById("bank").submit();
+break;
+    // new bank script end
+    
+    
     default:
         console.log(expr);
 }
+
