@@ -6,7 +6,7 @@
 // @author         oligochrome
 // @copyright      2019 oligochrome
 // @license        GNU GPL
-// @version        1.1.5
+// @version        1.1.6
 // @language       en
 // @match http://www.neopets.com/faerieland/springs.phtml
 // @match http://www.neopets.com/wishing.phtml
