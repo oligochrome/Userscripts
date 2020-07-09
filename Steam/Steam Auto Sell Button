@@ -5,21 +5,24 @@
 // @author         oligochrome
 // @copyright      2020 oligochrome
 // @license        GNU GPL
-// @version        0.2
+// @version        1.0
 // @language       en
 // @include  http*://steamcommunity.com/profiles/*/inventory*
 // @include  http*://steamcommunity.com/id/*/inventory*
 // ==/UserScript==
+
+const hide=e=>{e.style.display="none"},show=e=>{e.style.display="block"},toggle=e=>{"none"===window.getComputedStyle(e).display?show(e):hide(e)};
+
   (function (window, undefined) {
       var w;
       if (typeof unsafeWindow != undefined) { w = unsafeWindow }
       else { w = window; }
       if (w.self != w.top) { return; }
-      jQuery(document).ready(function ($) {
+      jQuery(document).ready(($) => {
           $('.item_desc_content').append('<a style="box-shadow:inset 0px -3px 2px 0px #8b90e8;background:linear-gradient(to bottom, #a1189c 5%, #4050ff 100%);background-color:#a1189c;border-radius:5px;border:1px solid #0a020a;display:inline-block;cursor:pointer;color:#000000;font-family:Arial;font-size:24px;font-weight:bold;padding:12px 16px;text-decoration:none;text-shadow:0px -1px 3px #a6a6a6;position: fixed;bottom: 540px;right: 80px;width: 300px;"class="item_market_action_button_contents item_market_action_button fs" href="#">Quick Sell</a>');
           $('.fs').on('click', quickSell); });
-      jQuery(document).ready(function ($) {
-          $('.item_desc_content').append('<a style="box-shadow:inset 0px -3px 2px 0px #8b90e8;background:linear-gradient(to bottom, #a1189c 5%, #4050ff 100%);background-color:#a1189c;border-radius:5px;border:1px solid #0a020a;display:inline-block;cursor:pointer;color:#000000;font-family:Arial;font-size:24px;font-weight:bold;padding:12px 16px;text-decoration:none;text-shadow:0px -1px 3px #a6a6a6;position: fixed;bottom: 440px;right: 80px;width: 300px;"class="item_market_action_button_contents item_market_action_button tl" href="#">Toggle full Layout</a>');
+      jQuery(document).ready(($) => {
+          $('.item_desc_content').append('<a style="box-shadow:inset 0px -3px 2px 0px #8b90e8;background:linear-gradient(to bottom, #a1189c 5%, #4050ff 100%);background-color:#a1189c;border-radius:5px;border:1px solid #0a020a;display:inline-block;cursor:pointer;color:#000000;font-family:Arial;font-size:24px;font-weight:bold;padding:12px 16px;text-decoration:none;text-shadow:0px -1px 3px #a6a6a6;position: fixed;bottom: 440px;right: 80px;width: 300px;"class="item_market_action_button_contents item_market_action_button tl" href="#">Toggle Layout</a>');
           $('.tl').on('click', restoreLayout); });
   })(window);
 
@@ -34,26 +37,16 @@
       document.getElementById("market_sell_dialog_accept_ssa").checked = true;
       document.getElementById("market_sell_dialog_accept").click();
       document.getElementById("market_sell_dialog_ok").click();
-      setTimeout(function () { document.querySelector("body > div.newmodal_background").click();}, 3000);
+      setTimeout(() => { document.querySelector("body > div.newmodal_background").click();}, 3000);
   }
 
   function restoreLayout() { // bring the hidden elements back
-      document.querySelector("#mainContents > div.inventory_links").style.display = "block";
-      document.querySelector("#global_header").style.display = "block";
-      document.querySelector("body > div.responsive_page_frame.with_header > div.responsive_page_content > div.responsive_page_template_content > div.pagecontent.no_header.no_footerpad > div.profile_small_header_bg").style.display = "block";
-      document.querySelector("#footer").style.display = "block";
-      document.querySelector("#inventory_logos").style.display = "block";
-      document.querySelector("#tabcontent_inventory > div.filter_ctn.inventory_filters").style.display = "block";
-      document.querySelector("#tabcontent_inventory > div:nth-child(3)").style.display = "block";
-      document.querySelector("#mainContents > div.games_list_tabs_ctn.responsive_hidden").style.display = "block";
+		toggle(document.querySelector('#mainContents > div.inventory_links'));
+		toggle(document.querySelector('#global_header'));
+		toggle(document.querySelector('body > div.responsive_page_frame.with_header > div.responsive_page_content > div.responsive_page_template_content > div.pagecontent.no_header.no_footerpad > div.profile_small_header_bg'));
+		toggle(document.querySelector('#footer'));
+		toggle(document.querySelector('#inventory_logos'));
+		toggle(document.querySelector('#tabcontent_inventory > div.filter_ctn.inventory_filters'));
+		toggle(document.querySelector('#tabcontent_inventory > div:nth-child(3)'));
+		toggle(document.querySelector('#mainContents > div.games_list_tabs_ctn.responsive_hidden'));
   }
-
-// eventually this will be a toggle function with on/off button for now it minifies the layout
-      document.querySelector("#mainContents > div.inventory_links").style.display = "none";
-      document.querySelector("#global_header").style.display = "none";
-      document.querySelector("body >      div.responsive_page_frame.with_header > div.responsive_page_content > div.responsive_page_template_content > div.pagecontent.no_header.no_footerpad > div.profile_small_header_bg").style.display = "none";
-      document.querySelector("#footer").style.display = "none";
-      document.querySelector("#inventory_logos").style.display = "none";
-      document.querySelector("#tabcontent_inventory > div.filter_ctn.inventory_filters").style.display = "none";
-      document.querySelector("#tabcontent_inventory > div:nth-child(3)").style.display = "none";
-      document.querySelector("#mainContents > div.games_list_tabs_ctn.responsive_hidden").style.display = "none";
