@@ -1,0 +1,18 @@
+// ==UserScript==
+// @name        Steam agecheck auto fill
+// @namespace   Violentmonkey Scripts
+// @match       https://store.steampowered.com/agecheck/app/*
+// @grant       none
+// @version     1.0
+// @author      -
+// @description autocompletes age check on steam store
+// ==/UserScript==
+
+let x = document.querySelector("#app_agegate > div.main_content_ctn > div:nth-child(1) > h2").innerText
+x.includes("THIS GAME MAY CONTAIN CONTENT NOT APPROPRIATE FOR ALL")
+if (x = true)
+{
+jQuery("select[name=ageDay]").val("24");  
+jQuery("select[name=ageMonth]").val("December"); 
+jQuery("select[name=ageYear]").val("1990"); 
+}
