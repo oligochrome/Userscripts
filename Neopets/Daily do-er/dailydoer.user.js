@@ -43,7 +43,7 @@
 // @match http://www.neopets.com/market.phtml?type=till
 // @match http://www.neopets.com/medieval/potatocounter.phtml
 // @match http://www.neopets.com/faerieland/caverns/index.phtml
-// @history 1.1.1 Added bank interest script
+// @match http://www.neopets.com/shenkuu/lunar/?show=puzzle
 // @grant          none
 // ==/UserScript==
 
@@ -62,6 +62,7 @@
       added potato counter script
 1.1.4 added lunar temple and faerie caverns
 1.1.5 moved all single line (e.g. window reassign or just click) scripts to top
+1.1.6 Updated lunar script to include on match, updated script to select correct one and click
 */
 
 
@@ -86,7 +87,8 @@ switch (expr) {
         $("input[value='Grab some Omelette']").click();
         break;
     
-    case 'http://www.neopets.com/halloween/applebobbing.phtml':
+    case 'http://www.neopets.com/halloween/applebobbing.phtml?':
+        case 'http://www.neopets.com/halloween/applebobbing.phtml':
         window.location.assign("http://www.neopets.com/halloween/applebobbing.phtml?bobbing=1")
         break;
 		
@@ -303,9 +305,13 @@ switch (expr) {
     
         // new bank script start
     case 'http://www.neopets.com/bank.phtml' : // ooops added brackets, removed now
+    if (document.querySelector("#content > table > tbody > tr > td.content > table:nth-child(14) > tbody > tr > td > div > table > tbody > tr:nth-child(2) > td > div").innerText == "You have already collected your interest today."){
+break;
+} else {
 document.body.innerHTML += '<form id="bank" action="http://www.neopets.com/process_bank.phtml" method="post"><input type="hidden" name="type" value="interest"></form>';
 document.getElementById("bank").submit();
 break;
+}
     // new bank script end
     
     // Shop till script originally by diceroll123
@@ -317,17 +323,20 @@ np = np.replace(/,/g, '');
 if(np == 0) return;
 
 $('[name="amount"]').val(np);
+		break;
     // end shop till
     
     // start potato counter
   case 'http://www.neopets.com/medieval/potatocounter.phtml' :
-    // Okay so it's not pretty, but this is an effective way to count the potatoes. Previously the value was accessible via the source.
-value=document.evaluate("count(/html/body/div/div[3]/table/tbody/tr/td[2]/table/tbody/tr/td/img)",document,null,1,null).numberValue
-// The guess should be in the box now..So we'll click the button
+let potato = document.querySelector("#content > table > tbody > tr > td.content > p:nth-child(5) > table > tbody");
+if (potato) {
+potato = potato.getElementsByTagName('img').length
+$("input[name=guess]").val(x);
 $("input[value='Guess!']").click();
-// Well if we're here then it's worked so far. Last bit of code restarts it ^__^
 $("input[value='Play Again']").click();
-    break;
+} else {
+break;
+}
   // end potato counter
     
     // // // // Cheeseroller
@@ -394,10 +403,12 @@ $("input[value='Play Again']").click();
     thisForm = document.getElementsByName('submitted')[0].parentNode;
 if (thisForm){
   var moon = Math.round(document.body.innerHTML.match(/angleKreludor=(\d+)/)[1]/22.5 + 8) % 16;
-  newElement = document.createElement("div");
-  newElement.innerHTML='<div style="padding:2px; font-weight:bold; font-size:11pt; text-align:center; background-color:white; color:black;"> The correct lunar phase is:<br><br><img src="http://images.neopets.com/shenkuu/lunar/phases/'+ moon +'.gif" border="0" width="60" height="60"><br><br><font class="sf" color="#3a84b0">(Click the already selected circle to submit your answer.)</font></div><br>';
+newElement = document.createElement("div");
+newElement.innerHTML='<div style="padding:2px; font-weight:bold; font-size:11pt; text-align:center; background-color:white; color:black;"> The correct lunar phase is:<br><br><img src="http://images.neopets.com/shenkuu/lunar/phases/'+ moon +'.gif" border="0" width="60" height="60"><br><br><font class="sf" color="#3a84b0">(Click the already selected circle to submit your answer.)</font></div><br>';
   thisForm.parentNode.insertBefore(newElement, thisForm);
   thisForm.getElementsByTagName('input')[moon + 1].checked = true;
+	let getChecked = document.querySelectorAll('input:checked');
+getChecked.item(0).click();
 }
     break;
     
