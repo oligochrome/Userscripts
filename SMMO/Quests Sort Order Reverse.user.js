@@ -3,6 +3,7 @@
 // @namespace   https://github.com/oligochrome
 // @match       https://web.simple-mmo.com/quests/viewall
 // @require     https://github.com/oligochrome/Userscripts/raw/master/SMMO/Includes/Commonfuncs.user.js
+// @updateURL   https://github.com/oligochrome/Userscripts/raw/master/SMMO/Quests Sort Order Reverse.user.js
 // @grant       none
 // @version     1.0
 // @author      Ogliochrome
