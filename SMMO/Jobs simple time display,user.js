@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        SMMO - Jobs simple time display - simple-mmo.com
 // @namespace   https://github.com/oligochrome
-// @updateURL   https://github.com/oligochrome/Userscripts/blob/master/SMMO/Jobs%20simple%20time%20display%2Cuser.js
+// @updateURL   https://raw.githubusercontent.com/oligochrome/Userscripts/master/SMMO/Jobs%20simple%20time%20display%2Cuser.js
 // @match       https://web.simple-mmo.com/jobs/view/*
 // @match       https://web.simple-mmo.com/jobs/viewall
 // @match       https://web.simple-mmo.com/home
