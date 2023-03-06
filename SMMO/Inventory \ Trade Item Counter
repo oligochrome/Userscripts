@@ -4,6 +4,7 @@
 // @match       https://web.simple-mmo.com/inventory/items*
 // @match       https://web.simple-mmo.com/trades/view/*
 // @exclude     https://web.simple-mmo.com/trades/view/*/add/gold
+// @updateURL   https://raw.githubusercontent.com/oligochrome/Userscripts/master/SMMO/Inventory%20%5C%20Trade%20Item%20Counter
 // @grant       none
 // @version     1.0
 // @author      Ogliochrome
