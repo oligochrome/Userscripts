@@ -2,7 +2,7 @@
 // @name       temple show reqs - simple-mmo.com
 // @namespace      https://github.com/oligochrome
 // @match       https://web.simple-mmo.com/temple
-// @update-url  https://github.com/oligochrome/Userscripts/raw/master/SMMO/ShowTempleRequirements.user.js
+// @updateURL  https://github.com/oligochrome/Userscripts/raw/master/SMMO/ShowTempleRequirements.user.js
 // @grant       none
 // @version     1.0
 // @author      Ogliochrome
