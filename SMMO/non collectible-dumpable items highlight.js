@@ -1,16 +1,16 @@
 // ==UserScript==
 // @name        SMMO - non collectible/dumpable items highlight- simple-mmo.com
 // @updateURL   https://github.com/oligochrome/Userscripts/raw/master/SMMO/non%20collectible-dumpable%20items%20highlight.js
-// @namespace   - simple-mmo.com -
+// @downloadURL https://github.com/oligochrome/Userscripts/raw/master/SMMO/non%20collectible-dumpable%20items%20highlight.js
+// @namespace   https://github.com/oligochrome/Userscripts
 // @include     https://web.simple-mmo.com/market/listings*
 // @include     https://web.simple-mmo.com/inventory/items*
 // @exclude     https://web.simple-mmo.com/market/listings?user_id=476520
 // @match       https://web.simple-mmo.com/inventory/storage*
 // @grant       none
-// @version     1.0.0
-// @author      -
-// @description 8/26/2022, 4:04:41 AM
-// @require     https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+// @version     1.0.1
+// @author      Oligochrome
+// @description Highlights non-dumpable items, items for collections etc. 
 // ==/UserScript==
 
 var baditems = ['Pie','Carrot','Special Carrot','Scalpel of Death', 'The Hamburger', 'Attuned Death', 'The Nokia', 'The Great Wall Of China', 'Hatreds Bite', 'Ivory Chestplate', 'Leather Armour', 'Weak Fishing Rod', 'Weak Shovel', 'Weak Axe', 'Weak Pickaxe', 'Fire Plate', 'Bootleg T-Shirt', 'Rusty Axe', 'Rusty Fishing Rod', 'Rusty Shovel', 'Rusty Pickaxe', 'Sword for Sloths', 'Frozen', 'Simple Dagger', 'Rotten Pumpkin', 'Delicious Candy Cane', 'Some Geezers Bow', 'Rat', 'Generic Shirt', 'Strong Shovel', 'Strong Axe', 'Strong Pickaxe', 'Strong Fishing Rod', 'Boar', 'Zombie', 'Knockoff T-shirt','A Strange Pie','Box of Chocolates','Springtime Bouquet','Easter Egg','Chocolate Egg','Balthazars Bloodstone','Delicious Pie']
