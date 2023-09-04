@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        SMMO - non collectible/dumpable items highlight- simple-mmo.com
-// @updateURL   https://github.com/oligochrome/scripts/raw/main/SMMO%20-%20non%20collectible-dumpable%20items%20highlight-%20simple-mmo.com.user.js
+// @updateURL   https://github.com/oligochrome/Userscripts/raw/master/SMMO/non%20collectible-dumpable%20items%20highlight.js
 // @namespace   - simple-mmo.com -
 // @include     https://web.simple-mmo.com/market/listings*
 // @include     https://web.simple-mmo.com/inventory/items*
