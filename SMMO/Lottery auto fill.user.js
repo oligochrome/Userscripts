@@ -5,7 +5,8 @@
 // @grant       none
 // @version     1.0
 // @author      Ogliochrome
-// @description 10/3/2022, 1:03:31 AM
+// @updateURL   https://github.com/oligochrome/Userscripts/raw/master/SMMO/Lottery%20auto%20fill.user.js
+// @description fills each lottery with 1 for quick ticket buying
 // ==/UserScript==
 var amount = document.getElementsByName("amount")[0]
 if(amount !== undefined){
