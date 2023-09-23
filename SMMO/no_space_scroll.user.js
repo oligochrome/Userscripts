@@ -6,6 +6,7 @@
 // @version     1.0
 // @author      Oligochrome
 // @description Prevents scrolling of page with spacebar
+// @updateURL  https://github.com/oligochrome/Userscripts/raw/master/SMMO/no_space_scroll.user.js
 // @run-at document-start
 // ==/UserScript==
 
