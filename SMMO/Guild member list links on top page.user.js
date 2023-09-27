@@ -9,7 +9,7 @@
 // @version     1.0.0
 // @author      Ogliochrome
 // @description 4/14/2023, 12:33:24 AM
-// @updateURL https://github.com/oligochrome/scripts/blob/raw/SMMO%20-%20Guild%20member%20list%20links%20on%20top%20page%20-%20simple-mmo.com.user.js
+// @updateURL https://github.com/oligochrome/Userscripts/raw/master/SMMO/Guild%20member%20list%20links%20on%20top%20page.user.js
 // ==/UserScript==
 
 let menu = document.getElementsByClassName('divide-y divide-gray-200 dark:divide-gray-800')
