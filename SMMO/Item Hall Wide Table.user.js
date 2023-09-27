@@ -10,7 +10,7 @@
 // @license        GNU GPL
 // @language       en
 // @description    Wide table in the item hall
-// @updateurl      https://github.com/oligochrome/scripts/raw/main/SMMO%20-%20Item%20Hall%20Wide%20Table%20-%20simple-mmo.com.user.js
+// @updateurl      https://github.com/oligochrome/Userscripts/raw/master/SMMO/Item%20Hall%20Wide%20Table.user.js
 
 // ==/UserScript==
 let gt = document.body.getElementsByClassName('-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8')[0]
