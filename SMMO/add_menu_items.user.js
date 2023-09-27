@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name      SMMO - add menu items- simple-mmo.com
-// @updateURL   https://github.com/oligochrome/scripts/raw/main/SMMO - add menu items- simple-mmo.com.user.js
+// @updateURL   https://github.com/oligochrome/Userscripts/raw/master/SMMO/add_menu_items.user.js
 // @namespace      https://github.com/oligochrome
 // @match    https://web.simple-mmo.com/*
 // @exclude  https://web.simple-mmo.com/login*
