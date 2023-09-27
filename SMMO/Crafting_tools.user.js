@@ -11,7 +11,7 @@
 // @language       en
 // @description    05/02/2023, 18:55:37
 // @require        https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @updateURL https://github.com/oligochrome/scripts/blob/raw/SMMO%20-%20Crafting%20tools%20-%20-%20simple-mmo.com.user.js
+// @updateURL https://github.com/oligochrome/Userscripts/raw/master/SMMO/SMMO%20-%20Crafting%20tools%20-%20-%20simple-mmo.com.user.js
 // ==/UserScript==
 function countthem(){
 
