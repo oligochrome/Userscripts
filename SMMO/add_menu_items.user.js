@@ -13,35 +13,14 @@
 // @require     https://github.com/oligochrome/Userscripts/raw/master/SMMO/bank_adjustments.user.js
 // ==/UserScript==
 
-/*if("undefined"==typeof jQuery){function e(e,t){var a=document.createElement("script");a.src=e;var n=document.getElementsByTagName("head")[0],o=!1;a.onload=a.onreadystatechange=function(){o||this.readyState&&"loaded"!=this.readyState&&"complete"!=this.readyState||(o=!0,t(),a.onload=a.onreadystatechange=null,n.removeChild(a))},n.appendChild(a)}"function"==typeof $&&(thisPageUsingOtherJSLibrary=!0),e("http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js",function(){"undefined"==typeof jQuery||(fancyCode(),thisPageUsingOtherJSLibrary)})}
-*/
-/*
-if(document.querySelector("body > div.h-screen.flex.overflow-hidden.bg-gray-100 > div.hidden.md\\:flex.md\\:flex-shrink-0.bg-white.dark\\:bg-gray-950.overflow-hidden.ease-in-out.duration-500.sm\\:duration-700.transition-width.w-48.lg\\:w-64 > div > div")){
-document.querySelector("body > div.h-screen.flex.overflow-hidden.bg-gray-100 > div.hidden.md\\:flex.md\\:flex-shrink-0.bg-white.dark\\:bg-gray-950.overflow-hidden.ease-in-out.duration-500.sm\\:duration-700.transition-width.w-48.lg\\:w-64 > div > div")){document.querySelector("body > div.h-screen.flex.overflow-hidden.bg-gray-100 > div.hidden.md\\:flex.md\\:flex-shrink-0.bg-white.dark\\:bg-gray-950.overflow-hidden.ease-in-out.duration-500.sm\\:duration-700.transition-width.w-48.lg\\:w-64 > div > div").style.paddingTop = '0'
-}else if(document.querySelector("body > div.h-screen.flex.overflow-hidden.bg-gray-100 > div.hidden.md\\:flex.md\\:flex-shrink-0.bg-white.dark\\:bg-gray-950.overflow-hidden.ease-in-out.duration-500.sm\\:duration-700.transition-width.w-48.lg\\:w-64 > div > div > div.px-4.text-center")
-){document.querySelector("body > div.h-screen.flex.overflow-hidden.bg-gray-100 > div.hidden.md\\:flex.md\\:flex-shrink-0.bg-white.dark\\:bg-gray-950.overflow-hidden.ease-in-out.duration-500.sm\\:duration-700.transition-width.w-48.lg\\:w-64 > div > div > div.px-4.text-center").style.display = "none"
-}
-  else if(document.querySelector("body > div.h-screen.flex.overflow-hidden.bg-gray-100 > div.hidden.md\\:flex.md\\:flex-shrink-0.bg-white.dark\\:bg-gray-950.overflow-hidden.ease-in-out.duration-500.sm\\:duration-700.transition-width.w-48.lg\\:w-64 > div > div > div.mt-5.flex-grow.flex.flex-col")
-
-){document.querySelector("body > div.h-screen.flex.overflow-hidden.bg-gray-100 > div.hidden.md\\:flex.md\\:flex-shrink-0.bg-white.dark\\:bg-gray-950.overflow-hidden.ease-in-out.duration-500.sm\\:duration-700.transition-width.w-48.lg\\:w-64 > div > div > div.mt-5.flex-grow.flex.flex-col").style.marginTop = '0'
-}
-  else if(document.querySelector("body > div.h-screen.flex.overfdocument.querySelector("body > div.h-screen.flex.overflow-hidden.bg-gray-100 > div.hidden.md\\:flex.md\\:flex-shrink-0.bg-white.dark\\:bg-gray-950.overflow-hidden.ease-in-out.duration-500.sm\\:duration-700.transition-width.w-48.lg\\:w-64 > div > div > div.px-4.text-center")
-){document.querySelector("body > div.h-screen.flex.overfdocument.querySelector("body > div.h-screen.flex.overflow-hidden.bg-gray-100 > div.hidden.md\\:flex.md\\:flex-shrink-0.bg-white.dark\\:bg-gray-950.overflow-hidden.ease-in-out.duration-500.sm\\:duration-700.transition-width.w-48.lg\\:w-64 > div > div > div.px-4.text-center").style.display = "none"
-}
-
-low-hidden.bg-gray-100 > div.hidden.md\\:flex.md\\:flex-shrink-0.bg-white.dark\\:bg-gray-950.overflow-hidden.ease-in-out.duration-500.sm\\:duration-700.transition-width.w-48.lg\\:w-64 > div > div > div.mt-5.flex-grow.flex.flex-col > hr").style.display = "none"
-
-*/
 let un = document.getElementsByClassName("text-sm font-medium text-gray-700 group-hover:text-gray-900")[0].innerText.split('\n                    ')[1].split('\n                  ')[0]
-
 let guildbutton = $( 'a[href*="/guilds/menu"]' )
-if(un === "alcoolemia"){
-
-
+if(un === "Phthalcool"){
 if(guildbutton.length > 1){guildbutton[1].href = "https://web.simple-mmo.com/guilds/view/39?new_page=true"}else {guildbutton[0].href = "https://web.simple-mmo.com/guilds/view/39?new_page=true"}
 }else if(un === "Guides"){
   if(guildbutton.length > 1){guildbutton[1].href = "https://web.simple-mmo.com/guilds/view/971?new_page=true"}else {guildbutton[0].href = "https://web.simple-mmo.com/guilds/view/971?new_page=true"}
 }
+
 function addlink (newurl,name) {
     var newlink = document.body.getElementsByClassName(" text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 group flex items-center px-2 py-2 text-sm font-medium rounded-md")[2].cloneNode(true)
     newlink.href = newurl
