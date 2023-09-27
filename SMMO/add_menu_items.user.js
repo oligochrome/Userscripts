@@ -10,6 +10,7 @@
 // @author      Ogliochrome
 // @description 9/19/2022, 8:41:40 AM
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
+// @require     https://github.com/oligochrome/Userscripts/raw/master/SMMO/bank_adjustments.user.js
 // ==/UserScript==
 
 /*if("undefined"==typeof jQuery){function e(e,t){var a=document.createElement("script");a.src=e;var n=document.getElementsByTagName("head")[0],o=!1;a.onload=a.onreadystatechange=function(){o||this.readyState&&"loaded"!=this.readyState&&"complete"!=this.readyState||(o=!0,t(),a.onload=a.onreadystatechange=null,n.removeChild(a))},n.appendChild(a)}"function"==typeof $&&(thisPageUsingOtherJSLibrary=!0),e("http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js",function(){"undefined"==typeof jQuery||(fancyCode(),thisPageUsingOtherJSLibrary)})}
