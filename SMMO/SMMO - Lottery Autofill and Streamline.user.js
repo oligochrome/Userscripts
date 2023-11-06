@@ -6,6 +6,7 @@
 // @version     1.2
 // @author      Ogliochrome
 // @updateURL   https://github.com/oligochrome/Userscripts/raw/master/SMMO/SMMO%20-%20Lottery%20Autofill%20and%20Streamline.user.js
+// @downloadURL https://github.com/oligochrome/Userscripts/raw/master/SMMO/SMMO%20-%20Lottery%20Autofill%20and%20Streamline.user.js
 // @description Fill in lottery boxes with 1 and hide unneccesary content boxes
 
 // ==/UserScript==
