@@ -3,10 +3,10 @@
 // @namespace      https://github.com/oligochrome
 // @match       https://web.simple-mmo.com/gamecentre/lottery/*
 // @grant       none
-// @version     1.0
+// @version     1.1
 // @author      Ogliochrome
 // @updateURL   https://github.com/oligochrome/Userscripts/raw/master/SMMO/SMMO%20-%20Lottery%20Autofill%20and%20Streamline.user.js
-// @description 10/3/2022, 1:03:31 AM
+// @description Fill in lottery boxes with 1 and hide unneccesary content boxes
 
 // ==/UserScript==
 
