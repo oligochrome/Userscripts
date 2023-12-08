@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name      SMMO - add menu items- simple-mmo.com
 // @updateURL   https://github.com/oligochrome/Userscripts/raw/master/SMMO/add_menu_items.user.js
+// @downloadURL https://github.com/oligochrome/Userscripts/blob/master/SMMO/add_menu_items.user.js
 // @namespace      https://github.com/oligochrome
 // @match    https://web.simple-mmo.com/*
 // @exclude  https://web.simple-mmo.com/login*
 // @exclude   https://web.simple-mmo.com/
 // @exclude   https://web.simple-mmo.com/alcool
-// @version     1.0.0
+// @version     1.1.0
 // @author      Ogliochrome
 // @description 9/19/2022, 8:41:40 AM
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
@@ -44,3 +45,5 @@ addlink("https://web.simple-mmo.com/temple?new_page=true","Temple");
 addlink("https://web.simple-mmo.com/orphanage?new_page=true","Orphanage");
 addlink("https://web.simple-mmo.com/town-hall?new_page=true","TownHall");
 addlink("https://web.simple-mmo.com/trades/view-all?new_page=true","Trades");
+addlink("https://web.simple-mmo.com/market/listings?item_name=cheese&order_col=cost&order=asc&page=1","Cheese");
+addlink("https://web.simple-mmo.com/market/listings?user_id=476520","my Listings");
