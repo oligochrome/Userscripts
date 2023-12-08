@@ -7,28 +7,40 @@
 // @exclude  https://web.simple-mmo.com/login*
 // @exclude   https://web.simple-mmo.com/
 // @exclude   https://web.simple-mmo.com/alcool
-// @version     1.1.0
+// @version     1.2.0
 // @author      Ogliochrome
 // @description 9/19/2022, 8:41:40 AM
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // @require     https://github.com/oligochrome/Userscripts/raw/master/SMMO/bank_adjustments.user.js
 // ==/UserScript==
 
-let un = document.getElementsByClassName("text-sm font-medium text-gray-700 group-hover:text-gray-900")[0].innerText.split('\n                    ')[1].split('\n                  ')[0]
-let guildbutton = $( 'a[href*="/guilds/menu"]' )
-if(un === "Phthalcool"){
-if(guildbutton.length > 1){guildbutton[1].href = "https://web.simple-mmo.com/guilds/view/39?new_page=true"}else {guildbutton[0].href = "https://web.simple-mmo.com/guilds/view/39?new_page=true"}
-}else if(un === "Guides"){
-  if(guildbutton.length > 1){guildbutton[1].href = "https://web.simple-mmo.com/guilds/view/971?new_page=true"}else {guildbutton[0].href = "https://web.simple-mmo.com/guilds/view/971?new_page=true"}
+let elements = document.getElementsByClassName('text-sm font-medium text-gray-700 group-hover:text-gray-900');
+let un = Array.from(elements)[0].innerText.split('\n                    ')[1].split('\n                  ')[0];
+let guildButtons = document.querySelectorAll('a[href*="/guilds/menu"]');
+
+if (un === 'Phthalcool') {
+    if (guildButtons.length > 1) {
+        guildButtons[1].href = 'https://web.simple-mmo.com/guilds/view/39?new_page=true';
+    } else {
+        guildButtons[0].href = 'https://web.simple-mmo.com/guilds/view/39?new_page=true';
+    }
+} else if (un === 'Guides') {
+    if (guildButtons.length > 1) {
+        guildButtons[1].href = 'https://web.simple-mmo.com/guilds/view/971?new_page=true';
+    } else {
+        guildButtons[0].href = 'https://web.simple-mmo.com/guilds/view/971?new_page=true';
+    }
 }
+
+
 
 function addlink (newurl,name) {
     var newlink = document.body.getElementsByClassName(" text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 group flex items-center px-2 py-2 text-sm font-medium rounded-md")[2].cloneNode(true)
     newlink.href = newurl
     newlink.childNodes[1].nextElementSibling.innerText = ""+name+""
-
-let x = document.body.getElementsByClassName(" text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 group flex items-center px-2 py-2 text-sm font-medium rounded-md")
-x[2].insertAdjacentElement("afterend",newlink)}
+    let x = document.getElementsByClassName("my-4 border-gray-100 dark:border-gray-800")[0]
+    x.insertAdjacentElement("beforebegin",newlink)
+}
 
 //        addlink("https://web.simple-mmo.com/","",1);
 //start adding
