@@ -1,12 +1,11 @@
 // ==UserScript==
-// @name      SMMO - add menu items- simple-mmo.com
+// @name        SMMO - Additional Menu Links - simple-mmo.com
 // @updateURL   https://github.com/oligochrome/Userscripts/raw/master/SMMO/add_menu_items.user.js
-// @downloadURL https://github.com/oligochrome/Userscripts/blob/master/SMMO/add_menu_items.user.js
-// @namespace      https://github.com/oligochrome
-// @match    https://web.simple-mmo.com/*
-// @exclude  https://web.simple-mmo.com/login*
-// @exclude   https://web.simple-mmo.com/
-// @exclude   https://web.simple-mmo.com/alcool
+// @namespace   https://github.com/oligochrome
+// @match       https://web.simple-mmo.com/*
+// @exclude     https://web.simple-mmo.com/login*
+// @exclude     https://web.simple-mmo.com/
+// @exclude     https://web.simple-mmo.com/alcool
 // @version     1.2.0
 // @author      Ogliochrome
 // @description 9/19/2022, 8:41:40 AM
