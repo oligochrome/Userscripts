@@ -6,7 +6,7 @@
 // @exclude     https://web.simple-mmo.com/login*
 // @exclude     https://web.simple-mmo.com/
 // @exclude     https://web.simple-mmo.com/alcool
-// @version     1.2.1
+// @version     1.3
 // @author      Ogliochrome
 // @description 9/19/2022, 8:41:40 AM
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
