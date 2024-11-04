@@ -1,173 +1,163 @@
 // ==UserScript==
-// @name           SMMO - Crafting tools - - simple-mmo.com
-// @updateURL   https://github.com/oligochrome/scripts/raw/main/SMMO - Crafting tools - - simple-mmo.com.user.js
+// @name           SMMO - Crafting tools - simple-mmo.com
 // @namespace      https://github.com/oligochrome
 // @match          https://web.simple-mmo.com/crafting/menu
 // @grant          none
-// @version        1.0
+// @version        2
 // @author         Ogliochrome
 // @license        GNU GPL
-// @version        1.0
-// @language       en
-// @description    05/02/2023, 18:55:37
-// @require        https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
-// @updateURL https://github.com/oligochrome/Userscripts/raw/master/SMMO/SMMO%20-%20Crafting%20tools%20-%20-%20simple-mmo.com.user.js
+// @description    Crafting tools modal on crafting page - counts materials available for each rarity, ignoring diamond shards
+// @updateURL      https://github.com/oligochrome/scripts/raw/main/SMMO - Crafting tools - - simple-mmo.com.user.js
+// @downloadURL    https://github.com/oligochrome/scripts/raw/main/SMMO - Crafting tools - - simple-mmo.com.user.js
 // ==/UserScript==
-function countthem(){
 
-  let x = $( "[id*='item-id-']" )
-var itemq = 0
-for (let index = 24; index < x.length; index++) {
-if(x[index].innerText.includes(" Key")){null}else{
-    let y = x[index].previousSibling.textContent.split('x ')[0].split('\n                                                            ')[1]
-    if(x[index].innerText != "Diamond Shard"){itemq = itemq + parseInt(y)}
+function countItems() {
+  let itemElements = $("[id*='item-id-']");
+  let itemQuantity = 0;
 
-}}
-alert(itemq)
+  for (let i = 24; i < itemElements.length; i++) {
+    if (!itemElements[i].innerText.includes("Key")) {
+      let quantity = itemElements[i].previousSibling.textContent.split('x ')[0].trim();
+      if (itemElements[i].innerText !== "Diamond Shard") {
+        itemQuantity += parseInt(quantity);
+      }
+    }
+  }
+  alert(itemQuantity);
 }
 
-function css(element, style) {
-	for (const property in style)
-		element.style[property] = style[property];
+function applyCSS(element, styles) {
+  for (const property in styles) {
+    element.style[property] = styles[property];
+  }
 }
-// Create the element
-var script = document.createElement("script");
-// Add script content
 
-// script.innerHTML = "function togg(id){if(id.style.display === 'none'){id.style.display = 'flex'}else if(id.style.display === 'flex'){id.style.display = 'none'}}";
+// Toggle visibility of an element
+function toggleVisibility() {
+  console.log("Toggle called");
+  const dragLinks = document.querySelector("#dragLinks");
+  dragLinks.style.display = dragLinks.style.display === 'none' ? 'block' : 'none';
+}
+
+// Create toggle script
+const script = document.createElement("script");
 script.innerHTML = `
-function togg(){
-console.log("called")
-var id = document.querySelector("#draglinks");
-if(id.style.display === 'none'){id.style.display = 'block'}else if(id.style.display === 'block'){id.style.display = 'none'};
-};
-`
-// Append
-
+  ${toggleVisibility.toString()}
+`;
 document.head.appendChild(script);
-var draggy = document.createElement('div');
-draggy.id = "mydiv";
-var draggyH = document.createElement('div');
-draggyH.id = "mydivheader"
-draggyH.innerText = " ";
 
-draggy.appendChild(draggyH);
+// Create draggable container
+const draggableContainer = document.createElement('div');
+draggableContainer.id = "draggableContainer";
 
-var itemToAppend = document.querySelector("body")
-itemToAppend.appendChild(draggy);
+const header = document.createElement('div');
+header.id = "header";
+header.innerText = " ";
+draggableContainer.appendChild(header);
 
-let dragB = document.createElement('button')
-draggy.appendChild(dragB);
+// Add container to body
+document.body.appendChild(draggableContainer);
 
-var draglinks = document.createElement('div');
-draglinks.id = "draglinks"
-draglinks.style.display = 'none'
-draggy.appendChild(draglinks);
+// Add button to draggable container
+const toggleButton = document.createElement('button');
+toggleButton.id = "toggleButton";
+toggleButton.innerText = "Toggle Links";
+toggleButton.onclick = toggleVisibility;
+draggableContainer.appendChild(toggleButton);
 
-document.querySelector("#mydiv > button").outerHTML = '<button id="dragB">click</button>'
-//<button id="dragB" onclick=togg()>click</button>
+// Create container for links
+const dragLinks = document.createElement('div');
+dragLinks.id = "dragLinks";
+dragLinks.style.display = 'none';
+draggableContainer.appendChild(dragLinks);
 
+// Make container draggable
+enableDragging(draggableContainer);
 
+function enableDragging(element) {
+  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
-//Make the DIV element draggagle:
-dragElement(document.getElementById("mydiv"));
-
-function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    /* if present, the header is where you move the DIV from:*/
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  const header = document.getElementById(element.id + "header");
+  if (header) {
+    header.onmousedown = dragMouseDown;
   } else {
-    /* otherwise, move the DIV from anywhere inside the DIV:*/
-    elmnt.onmousedown = dragMouseDown;
+    element.onmousedown = dragMouseDown;
   }
 
   function dragMouseDown(e) {
     e = e || window.event;
     e.preventDefault();
-    // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
+    document.onmouseup = stopDragging;
+    document.onmousemove = dragElement;
   }
 
-  function elementDrag(e) {
+  function dragElement(e) {
     e = e || window.event;
     e.preventDefault();
-    // calculate the new cursor position:
     pos1 = pos3 - e.clientX;
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
     pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    element.style.top = (element.offsetTop - pos2) + "px";
+    element.style.left = (element.offsetLeft - pos1) + "px";
   }
 
-  function closeDragElement() {
-    /* stop moving when mouse button is released:*/
+  function stopDragging() {
     document.onmouseup = null;
     document.onmousemove = null;
   }
 }
-css(
-document.querySelector("#mydiv"), {
-    'position': 'absolute',
-    'left': '290px',
-    'top': '300px',
-    'transform': 'translate(-50%, -50%)',
-    'padding': '10px'
-});
-css(draggy, {
 
- 'position': 'absolute',
-  'z-index': '999',
-  'background-color': '#f1f1f1',
-  'text-align': 'center',
-  'border': '1px solid #d3d3d3'
-//  'top':'0px',
-//  'left':'0px'
-});
-css(draggy.childNodes[0], {
-
-  'padding': '10px',
-  'cursor': 'move',
- 'z-index': '10',
-  'background-color': '#2196F3',
-  'color': '#fff'
+// Apply styles
+applyCSS(draggableContainer, {
+  position: 'absolute',
+  left: '290px',
+  top: '300px',
+  transform: 'translate(-50%, -50%)',
+  padding: '10px',
+  zIndex: '999',
+  backgroundColor: '#171717',
+  textAlign: 'center',
+  border: '1px solid #d3d3d3',
+  color: '#ececec'
 });
 
-let but = document.getElementById("dragB")
-but.style.fontSize = "xx-large";
-// but.style.fontsize = "xx-large"
-var smmourl = 'https://web.simple-mmo.com/'
+applyCSS(header, {
+  padding: '10px',
+  cursor: 'move',
+  zIndex: '10',
+  backgroundColor: '#000000',
+  color: '#ececec'
+});
 
-var lnames = [
-'count them'
-]
+applyCSS(toggleButton, {
+  fontSize: 'xx-large',
+  color: '#ececec'
+});
 
-var links = [
-'#',
-'#',
-'#'
-]
+// Links and labels
+const linkNames = ['Count Items'];
+const linkHrefs = ['#'];
 
-for (let index = 0; index < links.length; index++) {
-    var a = document.createElement('a');
-    a.href = links[index]
-  a.innerText = lnames[index]
-        var li = document.createElement('li');
-  var ul = document.createElement('ul');
-    li.appendChild(a);
-    ul.appendChild(li);
-  draglinks.appendChild(ul);
-}
+linkNames.forEach((name, i) => {
+  const link = document.createElement('a');
+  link.href = linkHrefs[i];
+  link.innerText = name;
+  link.style.color = '#ececec';
 
-document.querySelector("#draglinks").childNodes[0].childNodes[0].childNodes[0].addEventListener("click", countthem);
-/*
-document.querySelector("#draglinks").childNodes[0].childNodes[0].childNodes[0].addEventListener("click", GetMarketVals);
-document.querySelector("#draglinks").childNodes[1].childNodes[0].childNodes[0].addEventListener("click", higher);
-*/
-togg()
+  const listItem = document.createElement('li');
+  listItem.appendChild(link);
+
+  const list = document.createElement('ul');
+  list.appendChild(listItem);
+
+  dragLinks.appendChild(list);
+});
+
+// Add event listener for counting items
+dragLinks.querySelector("a").addEventListener("click", countItems);
+
+// Initialize visibility
+toggleVisibility();
